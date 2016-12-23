@@ -1,6 +1,9 @@
 .gradle
+gradlew.bat
+gradlew
+gradle-wrapper.properties
 /build/
-!gradle-wrapper.jar
+gradle-wrapper.jar
 .gradletasknamecache
 .idea
 *.iml
