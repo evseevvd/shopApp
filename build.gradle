@@ -1,5 +1,82 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.com.boxfuse.client:flyway-release:4.0.3"
+        classpath 'com.h2database:h2:1.4.192'
+    }
+}
+
 apply plugin: 'java'
+apply plugin: 'jetty'
+apply plugin: 'war'
+apply plugin: 'org.flywaydb.flyway'
+
+flyway {
+    url = 'jdbc:h2:file:./src/main/resources/shop.base'
+    user = 'sa'
+    schemas = ['SHOP']
+    table = 'changesetlog'
+    sqlMigrationPrefix = 'V_'
+    sqlMigrationSeparator = '-'
+    locations = [
+            'filesystem:./db/changesets'
+    ]
+}
+
+ext {
+    spring_version = '4.3.3.RELEASE'
+    spring_security = '4.1.3.RELEASE'
+    servlet_api =  '3.0.1'
+    jackson = '2.7.5'
+    jstl_version = '1.2'
+    h2 = '1.4.192'
+}
 
 task wrapper(type: Wrapper) {
     gradleVersion = '3.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //Spring зависимости
+    compile("org.springframework:spring-core:${spring_version}")
+    compile("org.springframework:spring-web:${spring_version}")
+    compile("org.springframework:spring-webmvc:${spring_version}")
+    compile("org.springframework:spring-jdbc:${spring_version}")
+    //Spring Security
+    compile ("org.springframework.security:spring-security-web:${spring_security}")
+    compile ("org.springframework.security:spring-security-config:${spring_security}")
+    //JSTL
+    compile ("javax.servlet:jstl:${jstl_version}")
+    //Jackson mapping
+    compile("com.fasterxml.jackson.core:jackson-databind:${jackson}")
+    compile("com.fasterxml.jackson.core:jackson-core:${jackson}")
+    compile("com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:${jackson}")
+    //Hibernate
+
+    //JPA?
+
+    compile("com.h2database:h2:${h2}")
+    providedCompile ("javax.servlet:javax.servlet-api:${servlet_api}")
+}
+
+jettyRun {
+    contextPath = "shopApp"
+    httpPort = 11080
+}
+
+jettyRunWar {
+    contextPath = "shopApp"
+    httpPort = 11080
+}
+
+task deploy {
+
 }
