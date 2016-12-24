@@ -77,6 +77,6 @@ jettyRunWar {
     httpPort = 11080
 }
 
-task deploy {
+task runApp {
 
 }
