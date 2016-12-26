@@ -1,5 +1,6 @@
 package com.shop.configure;
 
+import com.shop.filter.CorsFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -18,7 +19,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     @Override
     protected Filter[] getServletFilters() {
-        return new Filter[]{new CharacterEncodingFilter()};
+        return new Filter[]{new CharacterEncodingFilter(), new CorsFilter()};
     }
 
     @Override

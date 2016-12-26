@@ -6,14 +6,15 @@ buildscript {
     }
     dependencies {
         classpath "gradle.plugin.com.boxfuse.client:flyway-release:4.0.3"
+        classpath "org.akhikhl.gretty:gretty:1.4.0"
         classpath 'com.h2database:h2:1.4.192'
     }
 }
 
 apply plugin: 'java'
-apply plugin: 'jetty'
 apply plugin: 'war'
 apply plugin: 'org.flywaydb.flyway'
+apply plugin: "org.akhikhl.gretty"
 
 flyway {
     url = 'jdbc:h2:file:./src/main/resources/shop.base'
@@ -29,7 +30,8 @@ flyway {
 
 ext {
     spring_version = '4.3.3.RELEASE'
-    spring_security = '4.1.3.RELEASE'
+    spring_jpa = '1.10.1.RELEASE'
+    hibernate_core = '4.3.8.Final'
     servlet_api =  '3.0.1'
     jackson = '2.7.5'
     jstl_version = '1.2'
@@ -49,10 +51,7 @@ dependencies {
     compile("org.springframework:spring-core:${spring_version}")
     compile("org.springframework:spring-web:${spring_version}")
     compile("org.springframework:spring-webmvc:${spring_version}")
-    compile("org.springframework:spring-jdbc:${spring_version}")
-    //Spring Security
-    compile ("org.springframework.security:spring-security-web:${spring_security}")
-    compile ("org.springframework.security:spring-security-config:${spring_security}")
+//    compile("org.springframework:spring-jdbc:${spring_version}")
     //JSTL
     compile ("javax.servlet:jstl:${jstl_version}")
     //Jackson mapping
@@ -60,21 +59,18 @@ dependencies {
     compile("com.fasterxml.jackson.core:jackson-core:${jackson}")
     compile("com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:${jackson}")
     //Hibernate
+    compile("org.hibernate:hibernate-core:${hibernate_core}")
 
-    //JPA?
+    //JPA
+    compile("org.springframework.data:spring-data-jpa:${spring_jpa}")
 
     compile("com.h2database:h2:${h2}")
     providedCompile ("javax.servlet:javax.servlet-api:${servlet_api}")
 }
 
-jettyRun {
-    contextPath = "shopApp"
-    httpPort = 11080
-}
-
-jettyRunWar {
-    contextPath = "shopApp"
-    httpPort = 11080
+gretty {
+    port = 11080
+    contextPath = '/shopApp'
 }
 
 task runApp {
