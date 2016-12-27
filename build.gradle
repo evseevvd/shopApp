@@ -8,6 +8,7 @@ buildscript {
         classpath "gradle.plugin.com.boxfuse.client:flyway-release:4.0.3"
         classpath "org.akhikhl.gretty:gretty:1.4.0"
         classpath 'com.h2database:h2:1.4.192'
+
     }
 }
 
@@ -15,6 +16,7 @@ apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'org.flywaydb.flyway'
 apply plugin: "org.akhikhl.gretty"
+
 
 flyway {
     url = 'jdbc:h2:file:./src/main/resources/shop.base'
@@ -31,8 +33,8 @@ flyway {
 ext {
     spring_version = '4.3.3.RELEASE'
     spring_jpa = '1.10.1.RELEASE'
-    hibernate_core = '4.3.8.Final'
-    servlet_api =  '3.0.1'
+    hibernate_jpa = '4.3.8.Final'
+    servlet_api = '3.0.1'
     jackson = '2.7.5'
     jstl_version = '1.2'
     h2 = '1.4.192'
@@ -53,26 +55,33 @@ dependencies {
     compile("org.springframework:spring-webmvc:${spring_version}")
 //    compile("org.springframework:spring-jdbc:${spring_version}")
     //JSTL
-    compile ("javax.servlet:jstl:${jstl_version}")
+    compile("javax.servlet:jstl:${jstl_version}")
     //Jackson mapping
     compile("com.fasterxml.jackson.core:jackson-databind:${jackson}")
     compile("com.fasterxml.jackson.core:jackson-core:${jackson}")
     compile("com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:${jackson}")
     //Hibernate
-    compile("org.hibernate:hibernate-core:${hibernate_core}")
+    compile("org.hibernate:hibernate-core:${hibernate_jpa}")
+    compile("org.hibernate:hibernate-entitymanager:${hibernate_jpa}")
 
     //JPA
     compile("org.springframework.data:spring-data-jpa:${spring_jpa}")
 
     compile("com.h2database:h2:${h2}")
-    providedCompile ("javax.servlet:javax.servlet-api:${servlet_api}")
+
+    providedCompile("javax.servlet:javax.servlet-api:${servlet_api}")
+
+    //TODO непонятно что за костыль, но без него ругается хибер, видимо из-за того что использую java8
+    compile group: 'org.threeten', name: 'threetenbp', version: '1.3.1'
+
 }
 
 gretty {
+    servletContainer='tomcat8'
     port = 11080
     contextPath = '/shopApp'
 }
 
-task runApp {
-
+task runApp(dependsOn: ['clean', 'flywayMigrate', 'appStart']) {
+    println 'Start ShopApp'
 }

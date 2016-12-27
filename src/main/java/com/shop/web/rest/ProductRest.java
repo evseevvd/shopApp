@@ -1,6 +1,10 @@
 package com.shop.web.rest;
 
+import com.shop.service.api.ProductFacadeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,8 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(UrlConstants.BASE_URL+"/products")
 public class ProductRest {
 
+    @Autowired
+    @Qualifier("productFacadeService")
+    private ProductFacadeService productFacadeService;
+
     @GetMapping("/ping")
     public String ping() {
         return "Ping success";
+    }
+
+    @PostMapping("/create")
+    public void create() {
+        productFacadeService.create();
     }
 }
