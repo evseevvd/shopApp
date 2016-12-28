@@ -6,6 +6,7 @@ import com.shop.repository.common.RepositoryImpl;
 import com.shop.repository.persistence.model.Product;
 import com.shop.repository.search.ProductSearchCriteria;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -17,6 +18,8 @@ import java.util.List;
 
 /**
  * Created by Владимир on 27.12.2016.
+ *
+ * Репозиторий для Товара
  */
 @Repository("productRepository")
 public class ProductRepositoryImpl extends RepositoryImpl<Product> implements ProductRepository {

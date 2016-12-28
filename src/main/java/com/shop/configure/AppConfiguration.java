@@ -19,7 +19,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
         "com.shop.service",
         "com.shop.web",
 })
-@Import(PersistenceConfig.class)
+@Import({
+        PersistenceConfig.class,
+        DozerConfigure.class
+})
 public class AppConfiguration extends WebMvcConfigurerAdapter{
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

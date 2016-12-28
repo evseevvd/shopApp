@@ -38,6 +38,7 @@ ext {
     jackson = '2.7.5'
     jstl_version = '1.2'
     h2 = '1.4.192'
+    dozer = '5.5.1'
 }
 
 task wrapper(type: Wrapper) {
@@ -53,7 +54,6 @@ dependencies {
     compile("org.springframework:spring-core:${spring_version}")
     compile("org.springframework:spring-web:${spring_version}")
     compile("org.springframework:spring-webmvc:${spring_version}")
-//    compile("org.springframework:spring-jdbc:${spring_version}")
     //JSTL
     compile("javax.servlet:jstl:${jstl_version}")
     //Jackson mapping
@@ -66,8 +66,10 @@ dependencies {
 
     //JPA
     compile("org.springframework.data:spring-data-jpa:${spring_jpa}")
-
+    //Data base driver
     compile("com.h2database:h2:${h2}")
+    //Mapper
+    compile("net.sf.dozer:dozer:${dozer}")
 
     providedCompile("javax.servlet:javax.servlet-api:${servlet_api}")
 

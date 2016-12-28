@@ -1,12 +1,15 @@
 package com.shop.web.rest;
 
 import com.shop.service.api.ProductFacadeService;
+import com.shop.service.api.dto.ProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.math.BigDecimal;
 
 /**
  * Created by Владимир on 25.12.2016.
@@ -26,6 +29,10 @@ public class ProductRest {
 
     @PostMapping("/create")
     public void create() {
-        productFacadeService.create();
+        ProductDto productDto = new ProductDto();
+        productDto.setCode("23423");
+        productDto.setName("sdfsdf");
+        productDto.setPrice(BigDecimal.valueOf(1.2));
+        productFacadeService.create(productDto);
     }
 }
