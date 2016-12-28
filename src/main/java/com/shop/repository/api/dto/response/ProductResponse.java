@@ -1,6 +1,6 @@
-package com.shop.repository.api.response;
+package com.shop.repository.api.dto.response;
 
-import com.shop.repository.persistence.model.Product;
+import com.shop.repository.api.dto.ProductDto;
 
 import java.util.List;
 
@@ -11,13 +11,13 @@ import java.util.List;
  */
 public class ProductResponse extends CommonResponse{
 
-    private List<Product> products;
+    private List<ProductDto> products;
 
-    public List<Product> getProducts() {
+    public List<ProductDto> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(List<ProductDto> products) {
         this.products = products;
     }
 }

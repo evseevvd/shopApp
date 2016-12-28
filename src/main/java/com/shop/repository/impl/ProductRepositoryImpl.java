@@ -1,12 +1,11 @@
 package com.shop.repository.impl;
 
 import com.shop.repository.api.ProductRepository;
-import com.shop.repository.api.response.ProductResponse;
+import com.shop.repository.api.dto.response.ProductResponse;
 import com.shop.repository.common.RepositoryImpl;
 import com.shop.repository.persistence.model.Product;
-import com.shop.repository.search.ProductSearchCriteria;
+import com.shop.repository.api.dto.search.ProductSearchCriteria;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;

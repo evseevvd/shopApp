@@ -1,4 +1,4 @@
-package com.shop.repository.api.response;
+package com.shop.repository.api.dto.response;
 
 import java.io.Serializable;
 

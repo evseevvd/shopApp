@@ -1,4 +1,4 @@
-package com.shop.repository.search;
+package com.shop.repository.api.dto.search;
 
 import java.math.BigDecimal;
 

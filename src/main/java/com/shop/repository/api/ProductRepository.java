@@ -1,10 +1,10 @@
 package com.shop.repository.api;
 
-import com.shop.repository.api.response.ProductResponse;
+import com.shop.repository.api.dto.response.ProductResponse;
 import com.shop.repository.common.Repository;
 import com.shop.repository.persistence.model.Product;
-import com.shop.repository.search.ProductSearchCriteria;
-import com.shop.repository.search.SearchCriteriaWhithPagination;
+import com.shop.repository.api.dto.search.ProductSearchCriteria;
+import com.shop.repository.api.dto.search.SearchCriteriaWhithPagination;
 
 /**
  * Created by Владимир on 27.12.2016.
