@@ -1,5 +1,7 @@
 package com.shop.web.rest;
 
+import com.shop.repository.api.dto.response.ProductResponse;
+import com.shop.repository.api.dto.search.ProductSearchCriteria;
 import com.shop.service.api.ProductFacadeService;
 import com.shop.repository.api.dto.ProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +30,12 @@ public class ProductRest {
     }
 
     @PostMapping("/create")
-    public void create() {
-        ProductDto productDto = new ProductDto();
-        productDto.setCode("23423");
-        productDto.setName("sdfsdf");
-        productDto.setPrice(BigDecimal.valueOf(1.2));
-        productFacadeService.create(productDto);
+    public ProductResponse create(ProductDto productDto) {
+        return productFacadeService.create(productDto);
+    }
+
+    @PostMapping("/create")
+    public ProductResponse create(ProductSearchCriteria criteria) {
+        return productFacadeService.search(criteria);
     }
 }

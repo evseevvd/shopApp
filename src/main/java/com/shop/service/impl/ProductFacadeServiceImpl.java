@@ -61,7 +61,6 @@ public class ProductFacadeServiceImpl implements ProductFacadeService {
 
     @Override
     public ProductResponse search(ProductSearchCriteria criteria) {
-        ProductResponse results = productRepository.search(criteria);
-        return null;
+        return productRepository.search(criteria);
     }
 }
