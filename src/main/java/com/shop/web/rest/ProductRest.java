@@ -1,7 +1,7 @@
 package com.shop.web.rest;
 
 import com.shop.service.api.ProductFacadeService;
-import com.shop.service.api.dto.ProductDto;
+import com.shop.repository.api.dto.ProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;

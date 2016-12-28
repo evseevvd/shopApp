@@ -1,11 +1,17 @@
 package com.shop.service.api;
 
-import com.shop.service.api.dto.ProductDto;
+import com.shop.repository.api.response.ProductResponse;
 
 /**
  * Created by Владимир on 27.12.2016.
  */
 public interface ProductFacadeService {
 
-    void create(ProductDto product);
+    ProductResponse create(ProductDto product);
+
+    ProductResponse update(ProductDto product);
+
+    ProductResponse remove(ProductDto product);
+
+    ProductResponse getProduct(Integer id);
 }

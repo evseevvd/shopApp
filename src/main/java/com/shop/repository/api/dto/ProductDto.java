@@ -1,4 +1,4 @@
-package com.shop.service.api.dto;
+package com.shop.repository.api.dto;
 
 import org.dozer.Mapping;
 
@@ -9,7 +9,7 @@ import java.math.BigDecimal;
  *
  * ДТО "Товар"
  */
-public class ProductDto {
+public class ProductDto extends CommonDto{
     /**
      * Наименование товара
      */
@@ -33,6 +33,24 @@ public class ProductDto {
      */
     @Mapping("price")
     private BigDecimal price;
+
+    /**
+     * Поставщик
+     */
+    @Mapping("provider")
+    private ProviderDto provider;
+
+    /**
+     * Категория товара
+     */
+    @Mapping("category")
+    private CategoryDto category;
+
+    /**
+     * Производитель
+     */
+    @Mapping("producer")
+    private ProducerDto producer;
 
     public String getName() {
         return name;
@@ -66,23 +84,28 @@ public class ProductDto {
         this.price = price;
     }
 
-    /**
-     * Поставщик
-     */
-//    private Provider provider;
+    public ProviderDto getProvider() {
+        return provider;
+    }
 
-    /**
-     * Категория товара
-     */
-//    private Category category;
+    public void setProvider(ProviderDto provider) {
+        this.provider = provider;
+    }
 
-    /**
-     * Производитель
-     */
-//    private Producer producer;
+    public CategoryDto getCategory() {
+        return category;
+    }
 
-    /**
-     * Ссылка на заказы
-     */
-//    private List<Order> orders;
+    public void setCategory(CategoryDto category) {
+        this.category = category;
+    }
+
+    public ProducerDto getProducer() {
+        return producer;
+    }
+
+    public void setProducer(ProducerDto producer) {
+        this.producer = producer;
+    }
 }
+

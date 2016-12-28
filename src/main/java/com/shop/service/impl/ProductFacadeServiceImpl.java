@@ -3,7 +3,7 @@ package com.shop.service.impl;
 import com.shop.repository.api.ProductRepository;
 import com.shop.repository.persistence.model.Product;
 import com.shop.service.api.ProductFacadeService;
-import com.shop.service.api.dto.ProductDto;
+import com.shop.repository.api.dto.ProductDto;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
